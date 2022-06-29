@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #e03131;
+  border-bottom: 1px solid #c92a2a;
+}
+
+.header-logo:link,
+.header-logo:visited {
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-around;
+  gap: 1.4rem;
+}
+
+.header-link-item {
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 1.2rem;
+  transition: all 0.3s;
+}
+
+.header-link-item:hover,
+.header-link-item:active {
+  transform: scale(1.2);
+}
