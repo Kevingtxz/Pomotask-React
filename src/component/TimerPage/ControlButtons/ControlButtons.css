@@ -1,0 +1,31 @@
+.btn-grp {
+  display: flex;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+  border: 2px solid #fff;
+  background-color: transparent;
+  border: none;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: all 0.5s;
+  width: 18vh;
+  height: 8vh;
+  background-color: #fff;
+  border-radius: 50rem;
+  border: 5px solid #e03131;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: #e03131;
+  color: #fff;
+  border: 3px solid #fff;
+}

@@ -1,8 +1,9 @@
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import Header from "./component/layout/Header/Header";
-import Footer from "./component/layout/Footer/Footer";
+import Header from "./component/Layout/Header/Header";
+import Footer from "./component/Layout/Footer/Footer";
 import ErrorHandler from "./component/ErrorHandler/ErrorHandler";
+import TimerPage from "./component/TimerPage/TimerPage/TimerPage";
 
 export default function Main() {
   return (
@@ -10,6 +11,7 @@ export default function Main() {
       <Header />
       <main>
         <Routes>
+          <Route path="/" element={<TimerPage />} />
           <Route path="*" element={<ErrorHandler />} />
         </Routes>
       </main>

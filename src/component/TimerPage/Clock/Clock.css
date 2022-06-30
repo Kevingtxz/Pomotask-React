@@ -1,0 +1,57 @@
+.clock {
+  display: flex;
+  align-items: center;
+  border: 1vh solid #e03131;
+  width: 30vh;
+  height: 30vh;
+  border-radius: 50%;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 2px #c92a2a;
+  transition: all 1s;
+  animation: rotating 5s linear infinite;
+}
+
+.clock-pointer {
+  background-color: #495057;
+}
+
+.clock-pointer {
+  width: 50%;
+  height: 3px;
+}
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+}
