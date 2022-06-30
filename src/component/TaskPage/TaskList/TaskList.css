@@ -1,0 +1,30 @@
+.task-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 90%;
+  list-style: none;
+  margin: auto;
+}
+
+.task-list-btns {
+  display: flex;
+  justify-content: center;
+  padding: 5vh;
+  background-color: #fff;
+}
+
+.form-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 8rem;
+  color: #f03e3e;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
