@@ -4,6 +4,12 @@ import { useState } from "react";
 import TaskService from "../../../service/TaskService";
 import TaskModel from "../../../model/TaskModel";
 
+type TaskProps = {
+  task?: TaskModel;
+  onSuccess?: (id: number) => void;
+  onRemove?: (id: number) => void;
+};
+
 export default function Task({
   task = {
     id: 0,
@@ -19,11 +25,7 @@ export default function Task({
   },
   onSuccess = TaskService.updateSuccessfulTask,
   onRemove = TaskService.deleteTask,
-}: {
-  task?: TaskModel;
-  onSuccess?: (id: number) => void;
-  onRemove?: (id: number) => void;
-}): JSX.Element {
+}: TaskProps): JSX.Element {
   const [successful, setSucessful] = useState(task.successful);
 
   const handlerSuccess = () => {

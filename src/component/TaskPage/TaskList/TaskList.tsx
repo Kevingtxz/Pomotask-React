@@ -4,15 +4,17 @@ import Task from "../Task/Task";
 import TaskModel from "../../../model/TaskModel";
 import TaskService from "../../../service/TaskService";
 
+type TaskListProps = {
+  initialTaskList?: TaskModel[];
+  deleteTask?: (id: number) => void;
+  updateSuccessfulTask?: (id: number) => void;
+};
+
 export default function TaskList({
   initialTaskList = TaskService.getTaskList(),
   deleteTask = TaskService.deleteTask,
   updateSuccessfulTask = TaskService.updateSuccessfulTask,
-}: {
-  initialTaskList?: TaskModel[];
-  deleteTask?: (id: number) => void;
-  updateSuccessfulTask?: (id: number) => void;
-}): JSX.Element {
+}: TaskListProps): JSX.Element {
   const [taskList, setTaskList] = useState(initialTaskList);
 
   const removeTask = (id: number) => {
