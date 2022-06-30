@@ -18,7 +18,7 @@ const Task = (props) => {
     <li className={taskClass}>
       <h2 className="task-title task-heading">{task.title}</h2>
       <p className="task-text">
-        {task.workedTime} of {task.expectedTime}m
+        {Math.floor(task.workedTimeMinutes / 60)} of {task.expectedTimeHours}h
       </p>
       <p className="task-text">{task.deadline}d</p>
 

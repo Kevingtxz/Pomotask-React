@@ -24,6 +24,7 @@ function StopWatch(props) {
               stopCounter: stopCounter,
               time: props.time,
               bigTimeId: 1,
+              taskId: props.taskId,
             });
 
             setStopCounter(0);

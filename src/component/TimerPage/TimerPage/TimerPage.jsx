@@ -7,14 +7,17 @@ import TimerService from "../../../service/TimerService";
 import TaskService from "../../../service/TaskService";
 
 export default function TimerPage() {
-  const [task, setTask] = useState(TaskService.getPriorityTask());
+  const [task, setTask] = useState(TaskService.getPriorityLevelTask());
   const { time, bigTime } = TimerService.getTimerSettings();
 
   const deleteTask = (id) => {
     TaskService.deleteTask(id);
-    setTask(TaskService.getPriorityTask());
+    setTask(TaskService.getPriorityLevelTask());
   };
-  const postTimer = (obj) => TimerService.postTimer(obj);
+  const postTimer = (obj) => {
+    TimerService.postTimer(obj);
+    TaskService.patchMinutesWorkingTask(obj.taskId, obj.time);
+  };
 
   return (
     <div className="timer-page">
@@ -24,7 +27,12 @@ export default function TimerPage() {
         )) || <Task />}
       </div>
       <Clock />
-      <StopWatch postTimer={postTimer} time={time} bigTime={bigTime} />
+      <StopWatch
+        postTimer={postTimer}
+        taskId={task.id}
+        time={time}
+        bigTime={bigTime}
+      />
     </div>
   );
 }

@@ -6,7 +6,7 @@ import ErrorHandler from "./component/ErrorHandler/ErrorHandler";
 import TimerPage from "./component/TimerPage/TimerPage/TimerPage";
 import TaskPage from "./component/TaskPage/TaskPage/TaskPage";
 
-export default function Main() {
+export default function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Header />
