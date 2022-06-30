@@ -2,14 +2,33 @@ import "./Task.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import TaskService from "../../../service/TaskService";
+import TaskModel from "../../../model/TaskModel";
 
-const Task = (props) => {
-  const task = props.task;
+export default function Task({
+  task = {
+    id: 0,
+    title: "Default",
+    priorityLevel: 1,
+    healthLevel: 1,
+    expectedTimeHours: 0,
+    needFocus: false,
+    deadline: 0,
+    workedTimeMinutes: 0,
+    successful: false,
+    createdAt: new Date(),
+  },
+  onSuccess = TaskService.updateSuccessfulTask,
+  onRemove = TaskService.deleteTask,
+}: {
+  task?: TaskModel;
+  onSuccess?: (id: number) => void;
+  onRemove?: (id: number) => void;
+}): JSX.Element {
   const [successful, setSucessful] = useState(task.successful);
 
   const handlerSuccess = () => {
     setSucessful(!successful);
-    props.handlerSuccess(task.id);
+    onSuccess(task.id);
   };
 
   const taskClass = successful === false ? "task " : "task success";
@@ -20,7 +39,9 @@ const Task = (props) => {
       <p className="task-text">
         {Math.floor(task.workedTimeMinutes / 60)} of {task.expectedTimeHours}h
       </p>
-      <p className="task-text">{task.deadline}d</p>
+      {typeof task.deadline === "number" && (
+        <p className="task-text">{task.deadline}d</p>
+      )}
 
       <div className="task-btns">
         <a onClick={handlerSuccess} className="task-btn">
@@ -45,7 +66,7 @@ const Task = (props) => {
             <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
           </svg>
         </Link>
-        <a onClick={props.handlerRemove} className="task-btn">
+        <a onClick={() => onRemove} className="task-btn">
           <svg
             className="task-delete-icon task-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -59,21 +80,4 @@ const Task = (props) => {
       </div>
     </li>
   );
-};
-Task.defaultProps = {
-  task: {
-    id: 0,
-    title: "Default",
-    priority: -1,
-    expectedTime: 0,
-    isHard: false,
-    deadline: 0,
-    workedTime: 0,
-    successful: false,
-  },
-  handlerSuccess: TaskService.updateSuccessfulTask,
-  handlerRemove: TaskService.deleteTask,
-};
-Task.propTypes = {};
-
-export default Task;
+}

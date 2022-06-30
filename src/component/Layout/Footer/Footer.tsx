@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Footer.css";
 
-export default function Footer() {
+export default function Footer(): JSX.Element {
   return (
     <footer className="footer">
       <div className="footer-copyright-box">

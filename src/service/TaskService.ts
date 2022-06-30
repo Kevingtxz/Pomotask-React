@@ -138,7 +138,7 @@ class TaskService {
     if (task) return task;
   }
 
-  getTaskList() {
+  getTaskList(): TaskModel[] {
     //axios...
     return this.taskList;
   }
