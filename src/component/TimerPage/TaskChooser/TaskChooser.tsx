@@ -16,15 +16,21 @@ export default function TaskChooser({
   const [taskList, setTaskList] = useState(TaskService.getTaskListQtd(qtd));
 
   const onChoose = (task: TaskModel) => {
-    setTaskList([]);
+    setTaskList(taskList.filter((item) => item === task));
     setChosenTask(task);
   };
+  const onReset = () => setTaskList(TaskService.getTaskListQtd(qtd));
 
   return (
     <ul className="task-chooser">
       {taskList.map((item) => (
         <li>
-          <TaskChoiceCard key={item.id} task={item} onChoose={onChoose} />
+          <TaskChoiceCard
+            key={item.id}
+            task={item}
+            onChoose={onChoose}
+            onReset={onReset}
+          />
         </li>
       ))}
     </ul>

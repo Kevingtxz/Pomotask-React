@@ -11,14 +11,14 @@ export default function TimerPage(): JSX.Element {
   const [task, setTask] = useState({} as TaskModel);
 
   const setChosenTask = (task: TaskModel) => setTask(task);
+  const onTimerEnd = () => {};
 
   return (
     <div className="timer-page">
       <TaskChooser setChosenTask={setChosenTask} />
       <Clock />
       <StopWatch
-        taskId={task?.id}
-        taskTitle={task?.title}
+        onTimerEnd={onTimerEnd}
         initialTime={time}
         initialBigTime={bigTime}
       />

@@ -1,16 +1,22 @@
+import { useState } from "react";
 import TaskModel from "../../../model/TaskModel";
 import "./TaskChoiceCard.css";
 
 type TaskChoiceCardProps = {
   task: TaskModel;
   onChoose: (task: TaskModel) => void;
+  onReset: () => void;
 };
 
 export default function TaskChoiceCard({
   task,
   onChoose,
+  onReset,
 }: TaskChoiceCardProps): JSX.Element {
+  const [isSelected, setIsSelected] = useState(false);
+
   const handlerChoose = () => {
+    setIsSelected(!isSelected);
     onChoose(task);
   };
 

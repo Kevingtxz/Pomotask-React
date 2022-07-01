@@ -2,20 +2,17 @@ import "./StopWatch.css";
 import { useState, useEffect } from "react";
 import Timer from "../Timer/Timer";
 import ControlButtons from "../ControlButtons/ControlButtons";
-import TimerService from "../../../service/TimerService";
 
 type StopWatchProps = {
   initialTime?: number;
   initialBigTime?: number;
-  taskId?: number;
-  taskTitle?: string;
+  onTimerEnd?: ({ stopCounter }: { stopCounter: number }) => void;
 };
 
 function StopWatch({
   initialTime = 3600,
   initialBigTime = 16200,
-  taskId = 0,
-  taskTitle,
+  onTimerEnd,
 }: StopWatchProps): JSX.Element {
   const [isBigActive, setIsBigActive] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -32,12 +29,7 @@ function StopWatch({
       interval = setInterval(() => {
         setTime((prevState) => {
           if (prevState === 0) {
-            TimerService.postTimer({
-              stopCounter: stopCounter,
-              time: initialTime,
-              bigTimeId: 1,
-              taskId: taskId,
-            });
+            if (onTimerEnd) onTimerEnd({ stopCounter: stopCounter });
 
             setStopCounter(0);
             setCounter((prevState) => prevState + 1);
@@ -95,7 +87,6 @@ function StopWatch({
           handleStart={handleStart}
           handlePauseResume={handlePauseResume}
           handleReset={handleReset}
-          taskTitle={taskTitle}
         />
       </div>
     </div>
