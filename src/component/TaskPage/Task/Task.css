@@ -4,8 +4,8 @@
   justify-content: space-around;
   align-items: center;
   text-align: center;
-  width: 20vh;
-  height: 20vh;
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
   background-color: #fff;
   color: #495057;
@@ -19,6 +19,9 @@
 
 .task.task.success {
   background-color: #69db7c;
+}
+.task.task.success .task-icon {
+  display: block;
 }
 
 .task.success:hover {
@@ -45,6 +48,8 @@
 }
 
 .task-btn {
+  border: none;
+  background-color: transparent;
   cursor: pointer;
 }
 

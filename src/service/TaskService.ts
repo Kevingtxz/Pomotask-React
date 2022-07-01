@@ -117,7 +117,8 @@ class TaskService {
   taskList: TaskModel[];
 
   constructor() {
-    this.taskList = TASK_LIST.map((item) => {
+    this.taskList = TASK_LIST;
+    this.taskList.map((item) => {
       if (item.deadline instanceof Date)
         item.deadline = Math.floor(
           item.deadline.getTime() / MILIS_TO_DAYS_MULTIPLIER
@@ -143,28 +144,27 @@ class TaskService {
     return this.taskList;
   }
 
-  postTask(obj: TaskModel) {
+  postTask(obj: TaskModel): number {
     //axios...
-    if (this.taskList.length === 15) return false;
+    if (this.taskList.length === 18) return 0;
     this.taskList.push(obj);
-    return true;
-    console.log(this.taskList);
+    return 1;
   }
 
-  updateSuccessfulTask(id: number) {
+  updateSuccessfulTask(id: number): void {
     //axios...
     const task = this.taskList.find((item) => item.id === id);
     if (task) task.successful = !task.successful;
   }
 
-  patchMinutesWorkingTask(id: number, workedTimeMinutes: number) {
+  patchMinutesWorkingTask(id: number, workedTimeMinutes: number): void {
     //axios...
     const task = this.taskList.find((item) => item.id === id);
     if (!task) throw new Error("Task does not exits");
     task.workedTimeMinutes += workedTimeMinutes;
   }
 
-  deleteTask(id: number) {
+  deleteTask(id: number): void {
     //axios...
     this.taskList = this.taskList.filter((item) => item.id !== id);
   }

@@ -6,6 +6,7 @@ type ControlButtonsProps = {
   handleReset: () => void;
   isPaused: boolean;
   isActive: boolean;
+  taskTitle?: string;
 };
 
 export default function ControlButtons({
@@ -14,10 +15,11 @@ export default function ControlButtons({
   handleReset,
   isPaused,
   isActive,
+  taskTitle = "Start",
 }: ControlButtonsProps): JSX.Element {
   const StartButton = (
     <div className="btn btn-one btn-start" onClick={handleStart}>
-      Start
+      {taskTitle}
     </div>
   );
   const ActiveButtons = (

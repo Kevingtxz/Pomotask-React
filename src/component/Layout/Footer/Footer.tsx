@@ -19,14 +19,18 @@ export default function Footer(): JSX.Element {
               <a
                 href="https://github.com/Kevingtxz/Pomotask-React"
                 className="footer-link footer-project"
+                target="_blank"
+                rel="noreferrer"
               >
                 PomoTask React
               </a>
             </li>
             <li>
               <a
-                href="https://github.com/Kevingtxz/Pomotasks-Spring"
                 className="footer-link footer-project"
+                href="https://github.com/Kevingtxz/Pomotasks-Spring"
+                target="_blank"
+                rel="noreferrer"
               >
                 PomoTask Spring
               </a>
@@ -42,7 +46,12 @@ export default function Footer(): JSX.Element {
               </Link>
             </li>
             <li>
-              <a className="footer-link" href="mailto:pomotask@gmail.com">
+              <a
+                className="footer-link"
+                href="mailto:pomotask@gmail.com"
+                target="_blank"
+                rel="noreferrer"
+              >
                 pomotask@gmail.com
               </a>
             </li>

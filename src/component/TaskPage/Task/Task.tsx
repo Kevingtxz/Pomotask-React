@@ -23,14 +23,22 @@ export default function Task({
     successful: false,
     createdAt: new Date(),
   },
-  onSuccess = TaskService.updateSuccessfulTask,
-  onRemove = TaskService.deleteTask,
+  onSuccess,
+  onRemove,
 }: TaskProps): JSX.Element {
   const [successful, setSucessful] = useState(task.successful);
 
   const handlerSuccess = () => {
+    const id = task.id;
+    TaskService.updateSuccessfulTask(id);
     setSucessful(!successful);
-    onSuccess(task.id);
+    if (onSuccess) onSuccess(id);
+  };
+
+  const handlerRemove = () => {
+    const id = task.id;
+    TaskService.deleteTask(id);
+    if (onRemove) onRemove(id);
   };
 
   const taskClass = successful === false ? "task " : "task success";
@@ -46,7 +54,7 @@ export default function Task({
       )}
 
       <div className="task-btns">
-        <a onClick={handlerSuccess} className="task-btn">
+        <button onClick={handlerSuccess} className="task-btn">
           <svg
             className="task-check-icon task-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +64,7 @@ export default function Task({
           >
             <path d="M5 13l4 4L19 7" />
           </svg>
-        </a>
+        </button>
         <Link to={`/tasks/form/${task.id}`} className="task-btn">
           <svg
             className="task-pencil-alt-icon task-icon"
@@ -68,7 +76,7 @@ export default function Task({
             <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
           </svg>
         </Link>
-        <a onClick={() => onRemove} className="task-btn">
+        <button onClick={handlerRemove} className="task-btn">
           <svg
             className="task-delete-icon task-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +86,7 @@ export default function Task({
           >
             <path d="M6 18L18 6M6 6l12 12" />
           </svg>
-        </a>
+        </button>
       </div>
     </li>
   );

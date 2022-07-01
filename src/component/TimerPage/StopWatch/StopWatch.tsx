@@ -9,6 +9,7 @@ type StopWatchProps = {
   initialTime?: number;
   initialBigTime?: number;
   taskId?: number;
+  taskTitle?: string;
   postTimer?: (obj: TimerModel) => void;
 };
 
@@ -16,6 +17,7 @@ function StopWatch({
   initialTime = 3600,
   initialBigTime = 16200,
   taskId = 0,
+  taskTitle,
   postTimer = TimerService.postTimer,
 }: StopWatchProps): JSX.Element {
   const [isBigActive, setIsBigActive] = useState(false);
@@ -96,6 +98,7 @@ function StopWatch({
           handleStart={handleStart}
           handlePauseResume={handlePauseResume}
           handleReset={handleReset}
+          taskTitle={taskTitle}
         />
       </div>
     </div>
