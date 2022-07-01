@@ -1,5 +1,5 @@
 import "./TaskList.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Task from "../Task/Task";
 import TaskModel from "../../../model/TaskModel";
 import TaskService from "../../../service/TaskService";

@@ -1,0 +1,10 @@
+.task-chooser {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  position: absolute;
+  height: 50vh;
+  width: 60vw;
+  column-gap: 30vw;
+  row-gap: 2rem;
+  z-index: 1000;
+}

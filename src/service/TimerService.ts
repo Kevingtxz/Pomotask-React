@@ -1,6 +1,7 @@
 import axios from "axios";
 import SettingsModel from "../model/SettingsModel";
 import TimerModel from "../model/TimerModel";
+import TaskService from "./TaskService";
 
 class TimerService {
   settings: SettingsModel;
@@ -18,6 +19,7 @@ class TimerService {
   postTimer(obj: TimerModel) {
     //axios...
     this.timers.push(obj);
+    TaskService.patchMinutesWorkingTask(obj.taskId, obj.time);
     console.log(this.timers);
   }
 }

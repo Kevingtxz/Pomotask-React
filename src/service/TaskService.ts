@@ -144,6 +144,11 @@ class TaskService {
     return this.taskList;
   }
 
+  getTaskListQtd(qtd: number): TaskModel[] {
+    //axios...
+    return this.taskList.slice(0, qtd);
+  }
+
   postTask(obj: TaskModel): number {
     //axios...
     if (this.taskList.length === 18) return 0;
