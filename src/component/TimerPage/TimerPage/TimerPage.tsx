@@ -2,7 +2,7 @@ import "./TimerPage.css";
 import { useState } from "react";
 import Clock from "../Clock/Clock";
 import StopWatch from "../StopWatch/StopWatch";
-import TimerService from "../../../service/TimerService";
+import TimerService from "../../../api/TimerApiService";
 import TaskModel from "../../../model/TaskModel";
 import TaskChooser from "../TaskChooser/TaskChooser";
 

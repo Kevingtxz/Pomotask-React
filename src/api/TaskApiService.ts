@@ -3,7 +3,7 @@ import TaskModel from "../model/TaskModel";
 import { MILIS_TO_DAYS_MULTIPLIER } from "../utils/constants";
 import { TASK_LIST } from "../utils/DUMMY";
 
-class TaskService {
+class TaskApiService {
   taskList: TaskModel[];
 
   constructor() {
@@ -17,7 +17,7 @@ class TaskService {
     });
   }
 
-  getPriorityLevelTask(): TaskModel | void {
+  getByPriority(): TaskModel | void {
     const task: TaskModel | undefined = this.taskList.find(
       (item) =>
         item.priorityLevel ===
@@ -29,40 +29,40 @@ class TaskService {
     if (task) return task;
   }
 
-  getTaskList(): TaskModel[] {
+  getList(): TaskModel[] {
     //axios...
     return this.taskList;
   }
 
-  getTaskListQtd(qtd: number): TaskModel[] {
+  getListQtd(qtd: number): TaskModel[] {
     //axios...
     return this.taskList.slice(0, qtd);
   }
 
-  postTask(obj: TaskModel): number {
+  post(obj: TaskModel): number {
     //axios...
     if (this.taskList.length === 18) return 0;
     this.taskList.push(obj);
     return 1;
   }
 
-  updateSuccessfulTask(id: number): void {
+  updateSuccessful(id: number): void {
     //axios...
     const task = this.taskList.find((item) => item.id === id);
     if (task) task.successful = !task.successful;
   }
 
-  patchMinutesWorkingTask(id: number, workedTimeMinutes: number): void {
+  patchMinutesWorking(id: number, workedTimeMinutes: number): void {
     //axios...
     const task = this.taskList.find((item) => item.id === id);
     if (!task) throw new Error("Task does not exits");
     task.workedTimeMinutes += workedTimeMinutes;
   }
 
-  deleteTask(id: number): void {
+  delete(id: number): void {
     //axios...
     this.taskList = this.taskList.filter((item) => item.id !== id);
   }
 }
 
-export default new TaskService();
+export default new TaskApiService();

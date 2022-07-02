@@ -1,25 +1,16 @@
 import "./TaskList.css";
-import { useState } from "react";
+import { useContext } from "react";
+import TaskListContext from "../../../store/task/task-list-context";
 import Task from "../Task/Task";
-import TaskModel from "../../../model/TaskModel";
-import TaskService from "../../../service/TaskService";
 
-type TaskListProps = {
-  initialTaskList?: TaskModel[];
-};
-
-export default function TaskList({
-  initialTaskList = TaskService.getTaskList(),
-}: TaskListProps): JSX.Element {
-  const [taskList, setTaskList] = useState(initialTaskList);
-
-  const filterTask = (id: number): void =>
-    setTaskList((prevState) => prevState.filter((item) => item.id !== id));
+export default function TaskList(): JSX.Element {
+  const taskCtx = useContext(TaskListContext);
+  const onRemove = (id: number): void => taskCtx.dispatchRemoveItem(id);
 
   return (
     <ul className="task-list">
-      {taskList.map((item) => (
-        <Task key={item.id} task={item} onRemove={filterTask} />
+      {taskCtx.list.map((item) => (
+        <Task key={item.id} task={item} onRemove={onRemove} />
       ))}
     </ul>
   );

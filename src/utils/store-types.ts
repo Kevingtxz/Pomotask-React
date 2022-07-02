@@ -11,3 +11,9 @@ export type ActionTask = {
   item?: TaskModel;
   id?: number;
 };
+
+export interface TaskListContextType {
+  list: TaskModel[];
+  dispatchAddItem: (item: TaskModel) => void;
+  dispatchRemoveItem: (id: number) => void;
+}

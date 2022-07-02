@@ -1,44 +1,29 @@
 import "./Task.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import TaskService from "../../../service/TaskService";
 import TaskModel from "../../../model/TaskModel";
 
 type TaskProps = {
-  task?: TaskModel;
+  task: TaskModel;
   onSuccess?: (id: number) => void;
   onRemove?: (id: number) => void;
 };
 
 export default function Task({
-  task = {
-    id: 0,
-    title: "Default",
-    priorityLevel: 1,
-    healthLevel: 1,
-    expectedTimeHours: 0,
-    needFocus: false,
-    deadline: 0,
-    workedTimeMinutes: 0,
-    successful: false,
-    createdAt: new Date(),
-  },
+  task,
   onSuccess,
   onRemove,
 }: TaskProps): JSX.Element {
   const [successful, setSucessful] = useState(task.successful);
 
-  const handlerSuccess = () => {
+  const handlerSuccess = (): void => {
     const id = task.id;
-    TaskService.updateSuccessfulTask(id);
     setSucessful(!successful);
     if (onSuccess) onSuccess(id);
   };
 
-  const handlerRemove = () => {
-    const id = task.id;
-    TaskService.deleteTask(id);
-    if (onRemove) onRemove(id);
+  const handlerRemove = (): void => {
+    if (onRemove) onRemove(task.id);
   };
 
   const taskClass = successful === false ? "task " : "task success";
