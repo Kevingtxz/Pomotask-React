@@ -1,78 +1,49 @@
 import "./Task.css";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext } from "react";
+import TaskContext from "../../../store/task/task-context";
 import TaskModel from "../../../model/TaskModel";
+import { MILIS_TO_DAYS_MULTIPLIER as MILIS_TO_DAYS } from "../../../utils/constants";
+import IconBtn from "../../Common/IconBtn/IconBtn";
+import { IconBtnEnum } from "../../../utils/components-types";
+import TimerContext from "../../../store/timer/timer-context";
 
 type TaskProps = {
   task: TaskModel;
-  onSuccess?: (id: number) => void;
-  onRemove?: (id: number) => void;
 };
 
-export default function Task({
-  task,
-  onSuccess,
-  onRemove,
-}: TaskProps): JSX.Element {
-  const [successful, setSucessful] = useState(task.successful);
-
-  const handlerSuccess = (): void => {
-    const id = task.id;
-    setSucessful(!successful);
-    if (onSuccess) onSuccess(id);
+export default function Task({ task }: TaskProps): JSX.Element {
+  const ctx = useContext(TaskContext);
+  const ctxTimer = useContext(TimerContext);
+  const isSelect = ctx.service.isSelected(task);
+  const handlerSuccess = (): void => ctx.dispatchSetSuccessful(task.id);
+  const handlerSelect = (): void => {
+    ctx.dispatchSetSelected(task.id);
+    ctxTimer.dispatchSetSelectedTask(task);
   };
+  const handlerRemove = (): void => ctx.dispatchRemoveItem(task.id);
 
-  const handlerRemove = (): void => {
-    if (onRemove) onRemove(task.id);
-  };
-
-  const taskClass = successful === false ? "task " : "task success";
+  const taskClassName = isSelect ? "task" : "task selected";
 
   return (
-    <li className={taskClass}>
+    <div className={taskClassName}>
       <h2 className="task-title task-heading">{task.title}</h2>
       <p className="task-text">
         {Math.floor(task.workedTimeMinutes / 60)} of {task.expectedTimeHours}h
       </p>
-      {typeof task.deadline === "number" && (
-        <p className="task-text">{task.deadline}d</p>
-      )}
-
+      <p className="task-text">
+        {Math.floor(
+          (task.deadline - Date.now() + MILIS_TO_DAYS) / MILIS_TO_DAYS
+        )}
+        d
+      </p>
       <div className="task-btns">
-        <button onClick={handlerSuccess} className="task-btn">
-          <svg
-            className="task-check-icon task-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path d="M5 13l4 4L19 7" />
-          </svg>
-        </button>
-        <Link to={`/tasks/form/${task.id}`} className="task-btn">
-          <svg
-            className="task-pencil-alt-icon task-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-          </svg>
-        </Link>
-        <button onClick={handlerRemove} className="task-btn">
-          <svg
-            className="task-delete-icon task-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+        <IconBtn
+          opt={IconBtnEnum.SUCCESS}
+          params={{ handler: handlerSuccess }}
+        />
+        <IconBtn opt={IconBtnEnum.SELECT} params={{ handler: handlerSelect }} />
+        <IconBtn opt={IconBtnEnum.REMOVE} params={{ handler: handlerRemove }} />
       </div>
-    </li>
+    </div>
   );
 }

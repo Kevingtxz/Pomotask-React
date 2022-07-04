@@ -1,23 +1,21 @@
-import { useState } from "react";
+import { useContext } from "react";
 import TaskModel from "../../../model/TaskModel";
-import "./TaskChoiceCard.css";
+import TaskContext from "../../../store/task/task-context";
+import TimerContext from "../../../store/timer/timer-context";
+import "./TaskSelectCard.css";
 
 type TaskChoiceCardProps = {
   task: TaskModel;
-  onChoose: (task: TaskModel) => void;
-  onReset: () => void;
 };
 
 export default function TaskChoiceCard({
   task,
-  onChoose,
-  onReset,
 }: TaskChoiceCardProps): JSX.Element {
-  const [isSelected, setIsSelected] = useState(false);
-
+  const ctx = useContext(TimerContext);
+  const ctxTask = useContext(TaskContext);
   const handlerChoose = () => {
-    setIsSelected(!isSelected);
-    onChoose(task);
+    ctx.dispatchSetSelectedTask(task);
+    ctxTask.dispatchSetSelected(task.id);
   };
 
   return (

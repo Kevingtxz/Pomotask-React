@@ -1,25 +1,19 @@
+import { useContext } from "react";
+import TimerContext from "../../../store/timer/timer-context";
 import "./ControlButtons.css";
 
-type ControlButtonsProps = {
-  handleStart: () => void;
-  handlePauseResume: () => void;
-  handleReset: () => void;
-  isPaused: boolean;
-  isActive: boolean;
-  taskTitle?: string;
-};
+export default function ControlButtons(): JSX.Element {
+  const ctx = useContext(TimerContext);
+  const taskTitle: string | undefined = ctx.service.getSelectedTask()?.title;
+  const isPaused = ctx.service.isPaused();
+  const isActive = ctx.service.isActive();
+  const handleStart = ctx.dispatchStart;
+  const handlePauseResume = ctx.dispatchPauseResume;
+  const handleReset = ctx.dispatchReset;
 
-export default function ControlButtons({
-  handleStart,
-  handlePauseResume,
-  handleReset,
-  isPaused,
-  isActive,
-  taskTitle = "Start",
-}: ControlButtonsProps): JSX.Element {
   const StartButton = (
     <div className="btn btn-one btn-start" onClick={handleStart}>
-      {taskTitle}
+      {taskTitle ? taskTitle : "Start"}
     </div>
   );
   const ActiveButtons = (

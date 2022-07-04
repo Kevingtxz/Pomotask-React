@@ -1,43 +1,33 @@
 import { ReactNode, useReducer } from "react";
-import TaskListContext from "./task-list-context";
+import TaskContext from "./task-context";
 import TaskModel from "../../model/TaskModel";
-import { ActionsEnum, TaskListContextType } from "../../utils/store-types";
+import { ActionsEnum, TaskContextType } from "../../utils/store-types";
 import { ActionTask } from "../../utils/store-types";
-import TaskListService from "../../service/TaskListService";
-
-const defaultTaskState: TaskModel[] = TaskListService.getInitialList();
-
-const taskReducer = (
-  state: TaskModel[] = defaultTaskState,
-  action: ActionTask
-): TaskModel[] => {
-  if (action.type === ActionsEnum.ADD && action.item) state.push(action.item);
-  else if (action.type === ActionsEnum.REMOVE && action.id)
-    state = state.filter((item) => item.id !== action.id);
-  return state;
-};
+import { defaultTaskState, taskReducer } from "./taskReducer";
 
 type TaskProviderProps = { children: ReactNode };
 
 export default function TaskProvider({
   children,
 }: TaskProviderProps): JSX.Element {
-  const [taskState, dispatchAction] = useReducer(taskReducer, defaultTaskState);
+  const [state, dispatchAction] = useReducer(taskReducer, defaultTaskState);
 
   const dispatchAddItem = (item: TaskModel): void =>
-    dispatchAction({ type: ActionsEnum.ADD, item: item } as ActionTask);
+    dispatchAction({ opt: ActionsEnum.ADD, item: item } as ActionTask);
   const dispatchRemoveItem = (id: number): void =>
-    dispatchAction({ type: ActionsEnum.REMOVE, id: id });
+    dispatchAction({ opt: ActionsEnum.REMOVE, id: id } as ActionTask);
+  const dispatchSetSuccessful = (id: number): void =>
+    dispatchAction({ opt: ActionsEnum.SET_SUCCESSFUL, id: id } as ActionTask);
+  const dispatchSetSelected = (id: number): void =>
+    dispatchAction({ opt: ActionsEnum.SET_SELECTED, id: id } as ActionTask);
 
-  const taskContext = {
-    list: taskState,
+  const ctx = {
+    service: state,
     dispatchAddItem: dispatchAddItem,
     dispatchRemoveItem: dispatchRemoveItem,
-  } as TaskListContextType;
+    dispatchSetSuccessful: dispatchSetSuccessful,
+    dispatchSetSelected: dispatchSetSelected,
+  } as TaskContextType;
 
-  return (
-    <TaskListContext.Provider value={taskContext}>
-      {children}
-    </TaskListContext.Provider>
-  );
+  return <TaskContext.Provider value={ctx}>{children}</TaskContext.Provider>;
 }

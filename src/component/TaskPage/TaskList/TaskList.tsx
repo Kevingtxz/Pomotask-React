@@ -1,16 +1,16 @@
 import "./TaskList.css";
 import { useContext } from "react";
-import TaskListContext from "../../../store/task/task-list-context";
+import TaskContext from "../../../store/task/task-context";
 import Task from "../Task/Task";
 
 export default function TaskList(): JSX.Element {
-  const taskCtx = useContext(TaskListContext);
-  const onRemove = (id: number): void => taskCtx.dispatchRemoveItem(id);
-
+  const ctx = useContext(TaskContext);
   return (
     <ul className="task-list">
-      {taskCtx.list.map((item) => (
-        <Task key={item.id} task={item} onRemove={onRemove} />
+      {ctx.service.getAll().map((item, idx) => (
+        <li key={idx}>
+          <Task key={idx} task={item} />
+        </li>
       ))}
     </ul>
   );

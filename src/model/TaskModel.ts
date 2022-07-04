@@ -1,12 +1,14 @@
-export default interface TaskModel {
+import Model from "./Model";
+
+export default interface TaskModel extends Model {
   id: number;
   title: string;
   priorityLevel: number;
   healthLevel: number;
   expectedTimeHours: number;
   needFocus: boolean;
-  deadline: number | Date;
+  deadline: number;
   workedTimeMinutes: number;
-  createdAt: Date;
+  finishedAt?: number;
   successful: boolean;
 }

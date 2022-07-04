@@ -16,5 +16,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "old/TaskForm"]
+  "include": ["src", "old/TaskForm", "old/TaskService.ts"]
 }

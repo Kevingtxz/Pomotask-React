@@ -1,22 +1,22 @@
+import { useContext } from "react";
+import TimerContext from "../../../store/timer/timer-context";
 import "./Timer.css";
 
-type TimerProps = { counter?: number; time: number };
-
-export default function Timer({ counter, time }: TimerProps): JSX.Element {
-  const counterElement = <span className="counter">{counter}</span>;
+export default function Timer(): JSX.Element {
+  const ctx = useContext(TimerContext);
+  const time = ctx.service.getCurrentTime();
+  const counter = ctx.service.getCounter();
 
   return (
     <div className="timer">
       <span className="digits">
-        {("0" + Math.floor((time / 3600000) % 60)).slice(-2)}:
+        {("0" + Math.floor((time / 3600) % 60)).slice(-2)}:
       </span>
       <span className="digits">
-        {("0" + Math.floor((time / 60000) % 60)).slice(-2)}:
+        {("0" + Math.floor((time / 60) % 60)).slice(-2)}:
       </span>
-      <span className="digits">
-        {("0" + Math.floor((time / 1000) % 60)).slice(-2)}
-      </span>
-      {counter !== undefined && counterElement}
+      <span className="digits">{("0" + Math.floor(time % 60)).slice(-2)}</span>
+      <span className="counter">{counter}</span>
     </div>
   );
 }

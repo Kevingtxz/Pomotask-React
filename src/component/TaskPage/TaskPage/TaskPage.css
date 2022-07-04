@@ -1,8 +1,6 @@
 .task-page {
   height: 100%;
-  width: 80vw;
-  border-radius: 5px;
-  background-color: #f8f9fa;
+  background-color: #f03e3e;
   padding: 5vh 5vw;
   margin: auto;
 }
