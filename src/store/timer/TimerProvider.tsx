@@ -1,8 +1,8 @@
 import { ReactNode, useReducer } from "react";
 import TimerContext from "./timer-context";
 import TimerModel from "../../model/TimerModel";
-import { ActionsEnum, TimerContextType } from "../../utils/store-types";
-import { ActionTimer } from "../../utils/store-types";
+import { ActionsEnum, TimerContextType } from "../../util/store-types";
+import { ActionTimer } from "../../util/store-types";
 import { defaultTimerState, timerReducer } from "./timerReducer";
 import TaskModel from "../../model/TaskModel";
 

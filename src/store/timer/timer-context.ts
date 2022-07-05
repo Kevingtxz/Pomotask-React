@@ -2,7 +2,7 @@ import React from "react";
 import TaskModel from "../../model/TaskModel";
 import TimerModel from "../../model/TimerModel";
 import TimerService from "../../service/TimerService";
-import { TimerContextType } from "../../utils/store-types";
+import { TimerContextType } from "../../util/store-types";
 
 const TimerContext = React.createContext({
   service: new TimerService(),

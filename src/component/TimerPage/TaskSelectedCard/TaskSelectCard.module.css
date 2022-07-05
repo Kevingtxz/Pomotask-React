@@ -1,4 +1,4 @@
-.task-choice-card {
+.card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,13 +10,14 @@
   border-radius: 10px;
 }
 
-.task-choice-title {
+.title {
   font-size: 2.4rem;
   color: #495057;
 }
 
-.task-choice-btn {
-  width: 6.8rem;
+.btn {
+  height: 100%;
+  width: 100%;
   border: none;
   background-color: transparent;
 }

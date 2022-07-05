@@ -1,0 +1,13 @@
+.btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.icon {
+  height: 2rem;
+  color: #495057;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

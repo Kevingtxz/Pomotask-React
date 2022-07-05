@@ -1,6 +1,6 @@
 import TaskModel from "../../model/TaskModel";
-import { API_URL } from "../../utils/constants";
-import { TASK_LIST } from "../../utils/DUMMY";
+import { API_URL } from "../../util/constants";
+import { TASK_LIST } from "../../util/DUMMY";
 import ApiService from "./ApiService";
 
 export default class TaskApiService implements ApiService<TaskModel> {

@@ -1,8 +1,8 @@
 import { ReactNode, useReducer } from "react";
 import TaskContext from "./task-context";
 import TaskModel from "../../model/TaskModel";
-import { ActionsEnum, TaskContextType } from "../../utils/store-types";
-import { ActionTask } from "../../utils/store-types";
+import { ActionsEnum, TaskContextType } from "../../util/store-types";
+import { ActionTask } from "../../util/store-types";
 import { defaultTaskState, taskReducer } from "./taskReducer";
 
 type TaskProviderProps = { children: ReactNode };

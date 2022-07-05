@@ -1,5 +1,5 @@
 import TimerModel from "../../model/TimerModel";
-import { API_URL } from "../../utils/constants";
+import { API_URL } from "../../util/constants";
 import ApiService from "./ApiService";
 
 export default class TimerApiService implements ApiService<TimerModel> {

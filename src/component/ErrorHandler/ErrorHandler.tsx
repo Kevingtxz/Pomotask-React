@@ -1,9 +1,9 @@
-import "./ErrorHandler.css";
+import style from "./ErrorHandler.module.css";
 
 export default function ErrorHandler(): JSX.Element {
   return (
-    <div className="error-handler">
-      <h1 className="h1">Error occurred, please go to another page</h1>
+    <div className={style["main-div"]}>
+      <h1 className={style["h1"]}>Error occurred, please go to another page</h1>
     </div>
   );
 }

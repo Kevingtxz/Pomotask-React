@@ -11,11 +11,11 @@
   animation: rotating 5s linear infinite;
 }
 
-.clock-pointer {
+.pointer {
   background-color: #495057;
 }
 
-.clock-pointer {
+.pointer {
   width: 50%;
   height: 3px;
 }

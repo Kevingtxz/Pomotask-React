@@ -1,27 +1,27 @@
+import style from "./Header.module.css";
 import { Link } from "react-router-dom";
-import "./Header.css";
 
 export default function Header(): JSX.Element {
   return (
-    <header className="header">
-      <Link to="/" className="header-logo header-link-item">
+    <header className={style["header"]}>
+      <Link to="/" className={style["logo"] + " " + style["link-item"]}>
         PomoTask
       </Link>
 
-      <nav className="header-nav">
-        <Link to="/" className="header-link-item">
+      <nav className={style["nav"]}>
+        <Link to="/" className={style["link-item"]}>
           Home
         </Link>
-        <Link to="/tasks" className="header-link-item">
+        <Link to="/tasks" className={style["link-item"]}>
           Task
         </Link>
-        {/* <Link to="/statics" className="header-link-item">
+        {/* <Link to="/statics" className={style["link-item"]}>
         Static
       </Link>
-      <Link to="/settings" className="header-link-item">
+      <Link to="/settings" className={style["link-item"]}>
         Setting
       </Link> */}
-        <Link to="/logout" className="header-link-item">
+        <Link to="/logout" className={style["link-item"]}>
           Logout
         </Link>
       </nav>

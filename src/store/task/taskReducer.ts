@@ -1,5 +1,5 @@
 import TaskService from "../../service/TaskService";
-import { ActionsEnum, ActionTask } from "../../utils/store-types";
+import { ActionsEnum, ActionTask } from "../../util/store-types";
 
 export const defaultTaskState: TaskService = new TaskService();
 

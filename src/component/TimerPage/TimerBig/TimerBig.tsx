@@ -1,6 +1,6 @@
+import style from "./TimerBig.module.css";
 import { useContext, useEffect } from "react";
 import TimerContext from "../../../store/timer/timer-context";
-import "./TimerBig.css";
 
 export default function TimerBig(): JSX.Element {
   const ctx = useContext(TimerContext);
@@ -34,14 +34,14 @@ export default function TimerBig(): JSX.Element {
   ]);
 
   return (
-    <div className="timer">
-      <span className="digits">
+    <div className={style["timer"]}>
+      <span className={style["digits"]}>
         {("0" + Math.floor((currentTimeBig / 3600) % 60)).slice(-2)}:
       </span>
-      <span className="digits">
+      <span className={style["digits"]}>
         {("0" + Math.floor((currentTimeBig / 60) % 60)).slice(-2)}:
       </span>
-      <span className="digits">
+      <span className={style["digits"]}>
         {("0" + Math.floor(currentTimeBig % 60)).slice(-2)}
       </span>
     </div>

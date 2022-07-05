@@ -1,10 +1,10 @@
-import "./Task.css";
+import style from "./Task.module.css";
 import { useContext } from "react";
 import TaskContext from "../../../store/task/task-context";
 import TaskModel from "../../../model/TaskModel";
-import { MILIS_TO_DAYS_MULTIPLIER as MILIS_TO_DAYS } from "../../../utils/constants";
-import IconBtn from "../../Common/IconBtn/IconBtn";
-import { IconBtnEnum } from "../../../utils/components-types";
+import { MILIS_TO_DAYS_MULTIPLIER as MILIS_TO_DAYS } from "../../../util/constants";
+import IconBtn from "./IconBtn/IconBtn";
+import { IconBtnEnum } from "../../../util/components-types";
 import TimerContext from "../../../store/timer/timer-context";
 
 type TaskProps = {
@@ -22,21 +22,23 @@ export default function Task({ task }: TaskProps): JSX.Element {
   };
   const handlerRemove = (): void => ctx.dispatchRemoveItem(task.id);
 
-  const taskClassName = isSelect ? "task" : "task selected";
-
   return (
-    <div className={taskClassName}>
-      <h2 className="task-title task-heading">{task.title}</h2>
-      <p className="task-text">
+    <div
+      className={
+        isSelect ? style["task"] : style["task"] + " " + style["selected"]
+      }
+    >
+      <h2 className={style["title"] + " " + style["heading"]}>{task.title}</h2>
+      <p className={style["text"]}>
         {Math.floor(task.workedTimeMinutes / 60)} of {task.expectedTimeHours}h
       </p>
-      <p className="task-text">
+      <p className={style["text"]}>
         {Math.floor(
           (task.deadline - Date.now() + MILIS_TO_DAYS) / MILIS_TO_DAYS
         )}
         d
       </p>
-      <div className="task-btns">
+      <div className={style["btns"]}>
         <IconBtn
           opt={IconBtnEnum.SUCCESS}
           params={{ handler: handlerSuccess }}

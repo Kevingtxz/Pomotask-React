@@ -1,7 +1,7 @@
 import React from "react";
 import TaskModel from "../../model/TaskModel";
 import TaskService from "../../service/TaskService";
-import { TaskContextType } from "../../utils/store-types";
+import { TaskContextType } from "../../util/store-types";
 
 const TaskContext = React.createContext({
   service: new TaskService(),

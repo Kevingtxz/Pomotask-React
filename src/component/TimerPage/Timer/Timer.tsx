@@ -1,6 +1,6 @@
+import style from "./Timer.module.css";
 import { useContext } from "react";
 import TimerContext from "../../../store/timer/timer-context";
-import "./Timer.css";
 
 export default function Timer(): JSX.Element {
   const ctx = useContext(TimerContext);
@@ -8,15 +8,17 @@ export default function Timer(): JSX.Element {
   const counter = ctx.service.getCounter();
 
   return (
-    <div className="timer">
-      <span className="digits">
+    <div className={style["timer"]}>
+      <span className={style["digits"]}>
         {("0" + Math.floor((time / 3600) % 60)).slice(-2)}:
       </span>
-      <span className="digits">
+      <span className={style["digits"]}>
         {("0" + Math.floor((time / 60) % 60)).slice(-2)}:
       </span>
-      <span className="digits">{("0" + Math.floor(time % 60)).slice(-2)}</span>
-      <span className="counter">{counter}</span>
+      <span className={style["digits"]}>
+        {("0" + Math.floor(time % 60)).slice(-2)}
+      </span>
+      <span className={style["counter"]}>{counter}</span>
     </div>
   );
 }

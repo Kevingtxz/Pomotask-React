@@ -1,4 +1,4 @@
-import "./TaskSelect.css";
+import style from "./TaskSelect.module.css";
 import { useContext } from "react";
 import TaskContext from "../../../store/task/task-context";
 import TaskSelectCard from "../TaskSelectedCard/TaskSelectCard";
@@ -12,7 +12,7 @@ export default function TaskSelect(): JSX.Element {
   const listQtd = ctxTask.service.getAllQtd(4);
 
   return (
-    <ul className="task-select">
+    <ul className={style["task-select"]}>
       {listQtd.map((item, idx) => (
         <li key={idx}>
           <TaskSelectCard task={item} />

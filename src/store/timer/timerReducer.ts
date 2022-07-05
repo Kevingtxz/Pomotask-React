@@ -1,5 +1,5 @@
 import TimerService from "../../service/TimerService";
-import { ActionsEnum, ActionTimer } from "../../utils/store-types";
+import { ActionsEnum, ActionTimer } from "../../util/store-types";
 
 export const defaultTimerState: TimerService = new TimerService();
 

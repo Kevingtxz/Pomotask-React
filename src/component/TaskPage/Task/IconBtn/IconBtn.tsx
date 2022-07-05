@@ -1,13 +1,14 @@
+import style from "./IconBtn.module.css";
 import { Link } from "react-router-dom";
-import { IconBtnEnum, IconBtnProps } from "../../../utils/components-types";
+import { IconBtnEnum, IconBtnProps } from "../../../../util/components-types";
 
 export default function IconBtn({ opt, params }: IconBtnProps): JSX.Element {
   switch (opt) {
     case IconBtnEnum.SELECT:
       return (
-        <Link onClick={params.handler} to={"/"} className="task-btn">
+        <Link onClick={params.handler} to={"/"} className={style["btn"]}>
           <svg
-            className="task-choose-icon task-icon"
+            className={style["icon"]}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -19,9 +20,9 @@ export default function IconBtn({ opt, params }: IconBtnProps): JSX.Element {
       );
     case IconBtnEnum.SUCCESS:
       return (
-        <button onClick={params.handler} className="task-btn">
+        <button onClick={params.handler} className={style["btn"]}>
           <svg
-            className="task-check-icon task-icon"
+            className={style["icon"]}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -33,9 +34,9 @@ export default function IconBtn({ opt, params }: IconBtnProps): JSX.Element {
       );
     case IconBtnEnum.STATIC:
       return (
-        <button onClick={params.handler} className="task-btn">
+        <button onClick={params.handler} className={style["btn"]}>
           <svg
-            className="task-static-icon task-icon"
+            className={style["icon"]}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -47,9 +48,9 @@ export default function IconBtn({ opt, params }: IconBtnProps): JSX.Element {
       );
     case IconBtnEnum.UPDATE:
       return (
-        <Link to={`/tasks/form/${params.id}`} className="task-btn">
+        <Link to={`/tasks/form/${params.id}`} className={style["btn"]}>
           <svg
-            className="task-pencil-alt-icon task-icon"
+            className={style["icon"]}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -61,9 +62,9 @@ export default function IconBtn({ opt, params }: IconBtnProps): JSX.Element {
       );
     case IconBtnEnum.REMOVE:
       return (
-        <button onClick={params.handler} className="task-btn">
+        <button onClick={params.handler} className={style["btn"]}>
           <svg
-            className="task-delete-icon task-icon"
+            className={style["icon"]}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -75,9 +76,9 @@ export default function IconBtn({ opt, params }: IconBtnProps): JSX.Element {
       );
     case IconBtnEnum.FAIL:
       return (
-        <button onClick={params.handler} className="task-btn">
+        <button onClick={params.handler} className={style["btn"]}>
           <svg
-            className="task-fail-icon task-icon"
+            className={style["icon"]}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"

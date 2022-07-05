@@ -1,33 +1,33 @@
+import style from "./Footer.module.css";
 import { Link } from "react-router-dom";
-import "./Footer.css";
 
 export default function Footer(): JSX.Element {
   return (
-    <footer className="footer">
-      <div className="footer-copyright-box">
-        <h5 className="footer-logo">POMOTASK</h5>
+    <footer className={style["footer"]}>
+      <div className={style["copyright-box"]}>
+        <h5 className={style["logo"]}>POMOTASK</h5>
 
-        <p className="footer-copyright">
+        <p className={style["copyright"]}>
           Copyright &copy; 2022 by Pomotask, Inc. All rights reserved.
         </p>
       </div>
-      <div className="footer-navs">
-        <nav className="footer-nav-col">
-          <p className="footer-heading">GitHub Projet</p>
-          <ul className="footer-list">
-            <li>
+      <div className={style["navs"]}>
+        <nav className={style["nav-col"]}>
+          <p className={style["heading"]}>GitHub Projet</p>
+          <ul className={style["list"]}>
+            <li className={style["list-item"]}>
               <a
                 href="https://github.com/Kevingtxz/Pomotask-React"
-                className="footer-link footer-project"
+                className={style["link"]}
                 target="_blank"
                 rel="noreferrer"
               >
                 PomoTask React
               </a>
             </li>
-            <li>
+            <li className={style["list-item"]}>
               <a
-                className="footer-link footer-project"
+                className={style["link"]}
                 href="https://github.com/Kevingtxz/Pomotasks-Spring"
                 target="_blank"
                 rel="noreferrer"
@@ -37,17 +37,17 @@ export default function Footer(): JSX.Element {
             </li>
           </ul>
         </nav>
-        <nav className="footer-nav-col">
-          <p className="footer-heading">Info</p>
-          <ul className="footer-list">
-            <li className="footer-list-item">
-              <Link to="about" className="footer-link">
+        <nav className={style["nav-col"]}>
+          <p className={style["heading"]}>Info</p>
+          <ul className={style["list"]}>
+            <li className={style["list-item"]}>
+              <Link to="about" className={style["link"]}>
                 About Us
               </Link>
             </li>
-            <li>
+            <li className={style["list-item"]}>
               <a
-                className="footer-link"
+                className={style["link"]}
                 href="mailto:pomotask@gmail.com"
                 target="_blank"
                 rel="noreferrer"

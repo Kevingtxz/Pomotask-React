@@ -7,19 +7,19 @@
   border-bottom: 1px solid #c92a2a;
 }
 
-.header-logo:link,
-.header-logo:visited {
+.logo:link,
+.logo:visited {
   font-size: 1.8rem;
   color: #fff;
 }
 
-.header-nav {
+.nav {
   display: flex;
   justify-content: space-around;
   gap: 1.4rem;
 }
 
-.header-link-item {
+.link-item {
   color: #fff;
   border-radius: 5px;
   text-decoration: none;
@@ -30,7 +30,7 @@
   transition: all 0.3s;
 }
 
-.header-link-item:hover,
-.header-link-item:active {
+.link-item:hover,
+.link-item:active {
   transform: scale(1.2);
 }
