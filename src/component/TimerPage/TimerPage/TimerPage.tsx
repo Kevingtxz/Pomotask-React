@@ -1,7 +1,7 @@
 import style from "./TimerPage.module.css";
 import Clock from "../Clock/Clock";
-import StopWatch from "../StopWatch/StopWatch";
-import TaskSelect from "../TaskSelect/TaskSelect";
+import StopWatch from "../StopWatch/StopWatch/StopWatch";
+import TaskSelect from "../../TaskSelect/TaskSelect/TaskSelect";
 
 export default function TimerPage(): JSX.Element {
   return (

@@ -1,4 +1,4 @@
-import TaskModel from "../model/TaskModel";
+import TaskModel from "../model/task-model";
 
 export const TASK_LIST = [
   {

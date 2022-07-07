@@ -1,68 +1,23 @@
-import TaskModel from "../model/TaskModel";
-import TaskApiService from "./api/TaskApiService";
-import Service from "./Service";
+import TaskModel from "../model/task-model";
+import TaskForm from "../model/form/task-form";
 
-export default class TaskService extends Service<TaskModel> {
-  private selected?: TaskModel;
-
-  constructor(list?: TaskModel[], selected?: TaskModel) {
-    super(new TaskApiService(), list);
-    this.selected = selected;
+export default class TaskService {
+  static get(id: number): TaskModel {
+    throw new Error("Not yet implemented");
   }
-
-  clone(): TaskService {
-    return new TaskService(this.list, this.selected);
+  static getAll(): TaskModel[] {
+    throw new Error("Not yet implemented");
   }
-
-  removeById(id: number): void {
-    this.list = this.list.filter((item) => item.id !== id);
+  static post(obj: TaskForm): number {
+    throw new Error("Not yet implemented");
   }
-
-  isSelected(task: TaskModel): boolean {
-    return this.getSelected() === task;
+  static put(obj: TaskModel): void {
+    throw new Error("Not yet implemented");
   }
-
-  getSelected(): TaskModel | undefined {
-    return this.selected;
+  static patch(id: number, atr: string, payload: unknown): void {
+    throw new Error("Not yet implemented");
   }
-
-  setSelected(id: number): void {
-    this.selected = this.getById(id);
-  }
-
-  setSuccessful(id: number): void {
-    const itemUpdated: TaskModel | undefined = this.getById(id);
-    if (itemUpdated) {
-      itemUpdated.successful = !itemUpdated.successful;
-      this.saveItem(itemUpdated);
-    }
-  }
-
-  getByPriority(): TaskModel | void {
-    if (this.list.length === 0) return;
-    const idx = this.list.findIndex(
-      (item) =>
-        item.priorityLevel ===
-        Math.max.apply(
-          Math,
-          this.list.map((item) => item.priorityLevel)
-        )
-    );
-    return this.list[idx];
-  }
-
-  updateSuccessful(list: TaskModel[], id: number): void {
-    list.find((item) => item.id === id);
-  }
-
-  patchMinutesWorking(
-    list: TaskModel[],
-    id: number,
-    workedTimeMinutes: number
-  ): TaskModel[] {
-    const idx = list.findIndex((item) => item.id === id);
-    if (!idx) throw new Error("Task does not exits");
-    list[idx].workedTimeMinutes += workedTimeMinutes;
-    return list;
+  static delete(id: number): void {
+    throw new Error("Not yet implemented");
   }
 }

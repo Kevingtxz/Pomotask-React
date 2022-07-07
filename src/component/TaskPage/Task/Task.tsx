@@ -1,32 +1,38 @@
 import style from "./Task.module.css";
-import { useContext } from "react";
-import TaskContext from "../../../store/task/task-context";
-import TaskModel from "../../../model/TaskModel";
-import { MILIS_TO_DAYS_MULTIPLIER as MILIS_TO_DAYS } from "../../../util/constants";
-import IconBtn from "./IconBtn/IconBtn";
+import { memo } from "react";
+import TaskModel from "../../../model/task-model";
+import { DAYS_MILLISECONDS as MILIS_TO_DAYS } from "../../../util/constants";
+import IconBtn from "../IconBtn/IconBtn";
 import { IconBtnEnum } from "../../../util/components-types";
-import TimerContext from "../../../store/timer/timer-context";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { taskSuccess, remove, taskSelect } from "../../../store/task-reducer";
+import { RootState } from "../../../store/store";
 
 type TaskProps = {
   task: TaskModel;
 };
 
-export default function Task({ task }: TaskProps): JSX.Element {
-  const ctx = useContext(TaskContext);
-  const ctxTimer = useContext(TimerContext);
-  const isSelect = ctx.service.isSelected(task);
-  const handlerSuccess = (): void => ctx.dispatchSetSuccessful(task.id);
-  const handlerSelect = (): void => {
-    ctx.dispatchSetSelected(task.id);
-    ctxTimer.dispatchSetSelectedTask(task);
+export default memo(function Task({ task }: TaskProps): JSX.Element {
+  const dispatch = useDispatch();
+  const isSelectId = useSelector(
+    (state: RootState) => state.taskReducer.selectedTask?.id
+  );
+  const handlerSuccess = (): void => {
+    dispatch(taskSuccess(task.id));
   };
-  const handlerRemove = (): void => ctx.dispatchRemoveItem(task.id);
+  const handlerSelect = (): void => {
+    dispatch(taskSelect(task.id));
+  };
+  const handlerRemove = (): void => {
+    dispatch(remove(task.id));
+  };
 
   return (
     <div
-      className={
-        isSelect ? style["task"] : style["task"] + " " + style["selected"]
-      }
+      className={`${style["task"]} ${
+        isSelectId === task.id ? style["selected"] : ""
+      }`}
     >
       <h2 className={style["title"] + " " + style["heading"]}>{task.title}</h2>
       <p className={style["text"]}>
@@ -41,11 +47,17 @@ export default function Task({ task }: TaskProps): JSX.Element {
       <div className={style["btns"]}>
         <IconBtn
           opt={IconBtnEnum.SUCCESS}
-          params={{ handler: handlerSuccess }}
+          payload={{ handler: handlerSuccess }}
         />
-        <IconBtn opt={IconBtnEnum.SELECT} params={{ handler: handlerSelect }} />
-        <IconBtn opt={IconBtnEnum.REMOVE} params={{ handler: handlerRemove }} />
+        <IconBtn
+          opt={IconBtnEnum.SELECT}
+          payload={{ handler: handlerSelect }}
+        />
+        <IconBtn
+          opt={IconBtnEnum.REMOVE}
+          payload={{ handler: handlerRemove }}
+        />
       </div>
     </div>
   );
-}
+});

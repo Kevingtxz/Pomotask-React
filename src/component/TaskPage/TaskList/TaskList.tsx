@@ -1,13 +1,15 @@
 import style from "./TaskList.module.css";
-import { useContext } from "react";
-import TaskContext from "../../../store/task/task-context";
 import Task from "../Task/Task";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
 
 export default function TaskList(): JSX.Element {
-  const ctx = useContext(TaskContext);
+  const listTask = useSelector(
+    (state: RootState) => state.taskReducer.listTask
+  );
   return (
     <ul className={style["list"]}>
-      {ctx.service.getAll().map((item, idx) => (
+      {listTask?.map((item, idx) => (
         <li key={idx}>
           <Task key={idx} task={item} />
         </li>

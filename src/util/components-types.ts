@@ -15,9 +15,9 @@ export type IconBtnProps =
         | IconBtnEnum.STATIC
         | IconBtnEnum.REMOVE
         | IconBtnEnum.FAIL;
-      params: { handler: () => void };
+      payload: { handler: () => void };
     }
   | {
       opt: IconBtnEnum.UPDATE;
-      params: { id: number };
+      payload: { id: number };
     };
