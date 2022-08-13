@@ -1,8 +1,10 @@
-import Model from "./model";
+import AbsModel from "./abs-model";
+import TimerModel from "./timer-model";
 
-export default interface BigTimerModel extends Model {
-  timeSeconds: number;
+export default interface BigTimerModel extends AbsModel {
+  timeSec: number;
   goalTimers: number;
-  finishAt?: number;
   successful?: boolean;
+  finishedAt?: number;
+  timerList: TimerModel[];
 }

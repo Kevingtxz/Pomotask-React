@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import timerReducer from "./timer-reducer";
-import taskReducer from "./task-reducer";
+import timerReducer from "./reducer/timer-reducer";
+import taskReducer from "./reducer/task-reducer";
+import historyReducer from "./reducer/history-reducer";
 
 const store = configureStore({
-  reducer: { timerReducer, taskReducer },
+  reducer: { timerReducer, taskReducer, historyReducer },
 });
 
 export default store;

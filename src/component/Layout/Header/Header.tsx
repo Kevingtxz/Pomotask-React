@@ -15,14 +15,11 @@ export default function Header(): JSX.Element {
         <Link to="/tasks" className={style["link-item"]}>
           Task
         </Link>
-        {/* <Link to="/statics" className={style["link-item"]}>
-        Static
-      </Link>
-      <Link to="/settings" className={style["link-item"]}>
-        Setting
-      </Link> */}
-        <Link to="/logout" className={style["link-item"]}>
-          Logout
+        <Link to="/history" className={style["link-item"]}>
+          History
+        </Link>
+        <Link to="/status" className={style["link-item"]}>
+          Status
         </Link>
       </nav>
     </header>

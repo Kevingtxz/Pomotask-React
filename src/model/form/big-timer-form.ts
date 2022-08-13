@@ -1,7 +1,10 @@
-export default interface BigTimerForm {
-  timeSeconds: number;
+import Form from "./abs-form";
+import TimerForm from "./timer-form";
+
+export default interface BigTimerForm extends Form {
+  timerList: TimerForm[];
+  timeSec: number;
   goalTimers: number;
-  finishAt?: number;
+  finishedAt?: number;
   successful?: boolean;
-  createdAt: number;
 }

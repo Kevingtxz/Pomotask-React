@@ -1,6 +1,8 @@
-export default interface TaskModel {
+import Form from "./abs-form";
+
+export default interface TaskForm extends Form {
   title: string;
-  expectedTimeHours: number;
+  expectedTimeHrs: number;
   needFocus: boolean;
   isCrucial: boolean;
   deadline: number;

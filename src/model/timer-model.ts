@@ -1,9 +1,8 @@
-import Model from "./model";
+import AbsModel from "./abs-model";
 
-export default interface TimerModel extends Model {
-  timeSeconds: number;
-  bigTimeId?: number;
+export default interface TimerModel extends AbsModel {
   taskId?: number;
+  timeSec: number;
   stopsCounter?: number;
   finishedAt?: number;
   successful: boolean;

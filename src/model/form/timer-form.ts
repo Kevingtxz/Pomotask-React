@@ -1,7 +1,6 @@
-export default interface TimerForm {
-  createdAt: number;
-  timeSeconds: number;
-  bigTimeId?: number;
-  taskId?: number;
+import Form from "./abs-form";
+
+export default interface TimerForm extends Form {
+  timeSec: number;
   finishedAt?: number;
 }

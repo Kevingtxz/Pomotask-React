@@ -4,13 +4,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 
 export default function TaskList(): JSX.Element {
-  const listTask = useSelector(
-    (state: RootState) => state.taskReducer.listTask
+  const taskList = useSelector(
+    (state: RootState) => state.taskReducer.taskList
   );
+
   return (
     <ul className={style["list"]}>
-      {listTask?.map((item, idx) => (
-        <li key={idx}>
+      {taskList?.slice(0, 21).map((item, idx) => (
+        <li className={style["items"]} key={idx}>
           <Task key={idx} task={item} />
         </li>
       ))}

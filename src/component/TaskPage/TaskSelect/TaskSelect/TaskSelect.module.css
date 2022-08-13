@@ -1,0 +1,10 @@
+.task-select {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  position: fixed;
+  height: 30vh;
+  width: 60vw;
+  column-gap: 30vw;
+  row-gap: 2rem;
+  z-index: 1000;
+}

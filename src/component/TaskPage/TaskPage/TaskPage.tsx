@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function TaskPage(): JSX.Element {
   return (
-    <div className={style["page"]}>
+    <div className={style["task-page"]}>
       <TaskList />
       <Link className={style["add"]} to="form">
         +

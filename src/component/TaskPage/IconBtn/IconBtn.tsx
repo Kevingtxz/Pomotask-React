@@ -1,12 +1,35 @@
 import style from "./IconBtn.module.css";
 import { Link } from "react-router-dom";
-import { IconBtnEnum, IconBtnProps } from "../../../util/components-types";
+
+export enum IconBtnEnum {
+  SELECT = 1,
+  SUCCESS = 2,
+  STATIC = 3,
+  UPDATE = 4,
+  REMOVE = 5,
+  FAIL = 6,
+}
+
+export type IconBtnProps =
+  | {
+      type:
+        | IconBtnEnum.SELECT
+        | IconBtnEnum.SUCCESS
+        | IconBtnEnum.STATIC
+        | IconBtnEnum.REMOVE
+        | IconBtnEnum.FAIL;
+      payload: { handler: () => void };
+    }
+  | {
+      type: IconBtnEnum.UPDATE;
+      payload: { id: number };
+    };
 
 export default function IconBtn({
-  opt,
+  type,
   payload: params,
 }: IconBtnProps): JSX.Element {
-  switch (opt) {
+  switch (type) {
     case IconBtnEnum.SELECT:
       return (
         <Link onClick={params.handler} to={"/"} className={style["btn"]}>

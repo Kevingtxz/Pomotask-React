@@ -1,13 +1,12 @@
 import style from "./Task.module.css";
 import { memo } from "react";
 import TaskModel from "../../../model/task-model";
-import { DAYS_MILLISECONDS as MILIS_TO_DAYS } from "../../../util/constants";
-import IconBtn from "../IconBtn/IconBtn";
-import { IconBtnEnum } from "../../../util/components-types";
+import IconBtn, { IconBtnEnum } from "../IconBtn/IconBtn";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { taskSuccess, remove, taskSelect } from "../../../store/task-reducer";
+import { taskAction } from "../../../store/reducer/task-reducer";
 import { RootState } from "../../../store/store";
+import TaskService from "../../../service/TaskService";
 
 type TaskProps = {
   task: TaskModel;
@@ -16,16 +15,25 @@ type TaskProps = {
 export default memo(function Task({ task }: TaskProps): JSX.Element {
   const dispatch = useDispatch();
   const isSelectId = useSelector(
-    (state: RootState) => state.taskReducer.selectedTask?.id
+    (state: RootState) => state.taskReducer.selectedTaskId
   );
+  const workedTimerHours = Math.floor(task.workedTimeMin / 60);
+  const expectedTimeHrs = task.expectedTimeHrs;
+  const daysLast = TaskService.findDaysLasting(task.deadline);
+  const avgToFinishInTime = TaskService.findAvgTimeToFinish(
+    task.expectedTimeHrs,
+    task.workedTimeMin,
+    task.deadline
+  ).toFixed(1);
+
   const handlerSuccess = (): void => {
-    dispatch(taskSuccess(task.id));
+    dispatch(taskAction.successTask(task.id));
   };
   const handlerSelect = (): void => {
-    dispatch(taskSelect(task.id));
+    dispatch(taskAction.selectTask(task.id));
   };
   const handlerRemove = (): void => {
-    dispatch(remove(task.id));
+    dispatch(taskAction.removeTask(task.id));
   };
 
   return (
@@ -34,28 +42,28 @@ export default memo(function Task({ task }: TaskProps): JSX.Element {
         isSelectId === task.id ? style["selected"] : ""
       }`}
     >
-      <h2 className={style["title"] + " " + style["heading"]}>{task.title}</h2>
+      <h2 className={style["title"] + " " + style["heading"]}>
+        {task.title.slice(0, 20)}
+      </h2>
       <p className={style["text"]}>
-        {Math.floor(task.workedTimeMinutes / 60)} of {task.expectedTimeHours}h
+        {workedTimerHours} of {expectedTimeHrs}h
       </p>
-      <p className={style["text"]}>
-        {Math.floor(
-          (task.deadline - Date.now() + MILIS_TO_DAYS) / MILIS_TO_DAYS
-        )}
-        d
-      </p>
+      <p className={style["text"]}>{daysLast}d last</p>
+      <p className={style["text"]}>{avgToFinishInTime}h avg</p>
       <div className={style["btns"]}>
         <IconBtn
-          opt={IconBtnEnum.SUCCESS}
+          type={IconBtnEnum.SUCCESS}
           payload={{ handler: handlerSuccess }}
         />
+        <IconBtn type={IconBtnEnum.UPDATE} payload={{ id: task.id }} />
         <IconBtn
-          opt={IconBtnEnum.SELECT}
-          payload={{ handler: handlerSelect }}
-        />
-        <IconBtn
-          opt={IconBtnEnum.REMOVE}
+          type={IconBtnEnum.REMOVE}
           payload={{ handler: handlerRemove }}
+        />
+        <div></div>
+        <IconBtn
+          type={IconBtnEnum.SELECT}
+          payload={{ handler: handlerSelect }}
         />
       </div>
     </div>

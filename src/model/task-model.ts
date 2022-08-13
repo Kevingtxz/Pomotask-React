@@ -1,14 +1,12 @@
-import Model from "./model";
+import AbsModel from "./abs-model";
 
-export default interface TaskModel extends Model {
+export default interface TaskModel extends AbsModel {
   title: string;
-  expectedTimeHours: number;
+  expectedTimeHrs: number;
   needFocus: boolean;
   isCrucial: boolean;
   deadline: number;
-  workedTimeMinutes: number;
-  priorityLevel: number;
+  workedTimeMin: number;
   successful: boolean;
-  healthLevel: number;
   finishedAt?: number;
 }

@@ -8,7 +8,14 @@
   background-color: #f8f9fa;
   box-shadow: 0 2px 2px #c92a2a;
   transition: all 1s;
-  animation: rotating 5s linear infinite;
+  animation: rotating 3s linear infinite;
+  cursor: pointer;
+}
+
+.clock:hover {
+  transform: scale(3);
+  box-shadow: 0 3px 3px #fff;
+  animation: rotating 1.5s linear infinite;
 }
 
 .pointer {
